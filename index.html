@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вращающиеся изображения 3d галерея | Rotating images 3d gallery</title>
+  <link rel="stylesheet" href="./style.min.css">
+</head>
+
+<body>
+
+
+
+  <main>
+
+    <section>
+
+
+
+      <div class="rotating-3d">
+        <span class="rotating-3d__item" style="--i:1"><img src="./img/img-1.jpg" alt="img-1" class="rotating-3d__img"></span>
+        <span class="rotating-3d__item" style="--i:2"><img src="./img/img-2.jpg" alt="img-2" class="rotating-3d__img"></span>
+        <span class="rotating-3d__item" style="--i:3"><img src="./img/img-3.jpg" alt="img-3" class="rotating-3d__img"></span>
+        <span class="rotating-3d__item" style="--i:4"><img src="./img/img-4.jpg" alt="img-4" class="rotating-3d__img"></span>
+        <span class="rotating-3d__item" style="--i:5"><img src="./img/img-5.jpg" alt="img-5" class="rotating-3d__img"></span>
+        <span class="rotating-3d__item" style="--i:6"><img src="./img/img-6.jpg" alt="img-6" class="rotating-3d__img"></span>
+        <span class="rotating-3d__item" style="--i:7"><img src="./img/img-7.jpg" alt="img-7" class="rotating-3d__img"></span>
+        <span class="rotating-3d__item" style="--i:8"><img src="./img/img-8.jpg" alt="img-8" class="rotating-3d__img"></span>
+      </div>
+
+
+
+    </section>
+
+  </main>
+
+  <script>
+    var rotating3d = document.querySelector('.rotating-3d');
+    window.onmousemove = function(e) {
+      var x = e.clientX/2;
+      // var y = e.clientY;
+      rotating3d.style.transform = 'perspective(1000px) rotateY('+x+'deg)';
+    };
+  </script>
+
+
+</body>
+
+</html>
