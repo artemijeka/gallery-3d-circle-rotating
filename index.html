@@ -23,36 +23,33 @@
       <div class="gallery-3d-rotating">
         <span class="gallery-3d-rotating__item" style="--i:1">
           <img src="./img/img-1.jpg" alt="img-1" class="gallery-3d-rotating__img">
-          </span>
+        </span>
         <span class="gallery-3d-rotating__item" style="--i:2">
           <img src="./img/img-2.jpg" alt="img-2" class="gallery-3d-rotating__img">
-          </span>
+        </span>
         <span class="gallery-3d-rotating__item" style="--i:3">
           <img src="./img/img-3.jpg" alt="img-3" class="gallery-3d-rotating__img">
-          </span>
+        </span>
         <span class="gallery-3d-rotating__item" style="--i:4">
           <img src="./img/img-4.jpg" alt="img-4" class="gallery-3d-rotating__img">
-          </span>
+        </span>
         <span class="gallery-3d-rotating__item" style="--i:5">
           <img src="./img/img-5.jpg" alt="img-5" class="gallery-3d-rotating__img">
-          </span>
+        </span>
         <span class="gallery-3d-rotating__item" style="--i:6">
           <img src="./img/img-6.jpg" alt="img-6" class="gallery-3d-rotating__img">
-          </span>
+        </span>
         <span class="gallery-3d-rotating__item" style="--i:7">
           <img src="./img/img-7.jpg" alt="img-7" class="gallery-3d-rotating__img">
-          </span>
+        </span>
         <span class="gallery-3d-rotating__item" style="--i:8">
           <img src="./img/img-8.jpg" alt="img-8" class="gallery-3d-rotating__img">
-          </span>
+        </span>
       </div>
 
       <span class="gallery-3d-rotating__sound">
         <audio preload='auto' loop='loop' class="gallery-3d-rotating__sound-sea">
           <source src="./sounds/sea.mp3" type="audio/mpeg">
-        </audio>
-        <audio preload='auto' loop='loop' class="gallery-3d-rotating__sound-pig">
-          <source src="./sounds/pig.mp3" type="audio/mpeg">
         </audio>
       </span>
 
@@ -72,7 +69,7 @@
       stickyFooter: false,
       closeMethods: ['overlay', 'button', 'escape'],
       closeLabel: "Close",
-      cssClass: ['custom-tingle-1', 'custom-tingle-2'],
+      cssClass: ['tingle-1', 'tingle-2'],
       onOpen: function () {
         soundSea.play();
       },
@@ -98,7 +95,8 @@
     var imgs = document.querySelectorAll('.gallery-3d-rotating__item');
     imgs.forEach(function (a, b, c) {
       a.onclick = function (e) {
-        var imgSrc = a.childNodes[0].src;
+        var imgSrc = a.childNodes[1].src;
+        console.log(a.childNodes);
         modal.setContent('<img class="tingle-img" src="' + imgSrc + '">');
         modal.open();
       }
