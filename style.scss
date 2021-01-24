@@ -1,79 +1,103 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Rubik', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000;
 }
 
 .rotating-3d {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  transform-style: preserve-3d;
-  transform: perspective(1000px) rotateY(0deg);
-  // transition: 500ms;
-  // animation: rotating3d 20s linear infinite;
-  &__item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform-origin: center;
+    position: relative;
+    width: 200px;
+    height: 200px;
     transform-style: preserve-3d;
-    transform: rotateY(calc(var(--i) * 45deg)) translateZ(400px);
-    -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, rgba(255, 255, 255, 0.35));
-    &::after {
-      transition: 500ms;
+    transform: perspective(1000px) rotateY(0deg);
+    // transition: 500ms;
+    // animation: rotating3d 20s linear infinite;
+    &__item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform-origin: center;
+        transform-style: preserve-3d;
+        transform: rotateY(calc(var(--i) * 45deg)) translateZ(400px);
+        -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, rgba(255, 255, 255, 0.35));
+        &::after {
+            transition: 500ms;
+        }
+        &:hover::after {
+            content: '';
+            background-image: url(./zoom-in.svg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.2);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 16%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+        &:focus,
+        &:active {
+            cursor: move;
+            // backdrop-filter: none;
+        }
     }
-    &:hover::after {
-      content: '';
-      background-image: url(./zoom-in.svg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0,0,0,0.2);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-size: 16%;
-      background-repeat: no-repeat;
-      background-position: center;
-      cursor: pointer;
+    &__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
     }
-    &:focus,
-    &:active {
-      cursor: move;
-      // backdrop-filter: none;
-    }
-  }
-  &__img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-  }
 }
 
 @keyframes rotating3d {
-  0% {
-    transform: perspective(1000px) rotateY(0deg);
-  }
-  100% {
-    transform: perspective(1000px) rotateY(360deg);
-  }
+    0% {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    100% {
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+
+.tingle {
+    &-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    &-modal {
+        &__close {
+            right: 0.5em !important;
+            top: 0.5em !important;
+        }
+        &-box {
+            width: 90%!important;
+            height: 90%!important;
+            &__content {
+                height: 100%;
+            }
+            &__footer {
+                display: none;
+            }
+        }
+    }
 }

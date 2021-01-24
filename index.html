@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Вращающиеся изображения 3d галерея | Rotating images 3d gallery</title>
   <link rel="stylesheet" href="./style.min.css">
+  <link rel="stylesheet" href="./tingle.min.css">
 </head>
 
 <body>
@@ -19,23 +20,32 @@
 
 
       <div class="rotating-3d">
-        <span class="rotating-3d__item" style="--i:1"><img src="./img/img-1.jpg" alt="img-1"
+        <span class="rotating-3d__item _sea" style="--i:1"><img src="./img/img-1.jpg" alt="img-1"
             class="rotating-3d__img"></span>
-        <span class="rotating-3d__item" style="--i:2"><img src="./img/img-2.jpg" alt="img-2"
+        <span class="rotating-3d__item _pig" style="--i:2"><img src="./img/img-2.jpg" alt="img-2"
             class="rotating-3d__img"></span>
-        <span class="rotating-3d__item" style="--i:3"><img src="./img/img-3.jpg" alt="img-3"
+        <span class="rotating-3d__item _sea" style="--i:3"><img src="./img/img-3.jpg" alt="img-3"
             class="rotating-3d__img"></span>
-        <span class="rotating-3d__item" style="--i:4"><img src="./img/img-4.jpg" alt="img-4"
+        <span class="rotating-3d__item _sea" style="--i:4"><img src="./img/img-4.jpg" alt="img-4"
             class="rotating-3d__img"></span>
-        <span class="rotating-3d__item" style="--i:5"><img src="./img/img-5.jpg" alt="img-5"
+        <span class="rotating-3d__item _sea" style="--i:5"><img src="./img/img-5.jpg" alt="img-5"
             class="rotating-3d__img"></span>
-        <span class="rotating-3d__item" style="--i:6"><img src="./img/img-6.jpg" alt="img-6"
+        <span class="rotating-3d__item _sea" style="--i:6"><img src="./img/img-6.jpg" alt="img-6"
             class="rotating-3d__img"></span>
-        <span class="rotating-3d__item" style="--i:7"><img src="./img/img-7.jpg" alt="img-7"
+        <span class="rotating-3d__item _sea" style="--i:7"><img src="./img/img-7.jpg" alt="img-7"
             class="rotating-3d__img"></span>
-        <span class="rotating-3d__item" style="--i:8"><img src="./img/img-8.jpg" alt="img-8"
+        <span class="rotating-3d__item _sea" style="--i:8"><img src="./img/img-8.jpg" alt="img-8"
             class="rotating-3d__img"></span>
       </div>
+
+      <span class="rotating-3d__sound">
+        <audio preload='auto' loop='loop' class="rotating-3d__sound-sea">
+          <source src="./sounds/sea.mp3" type="audio/mpeg">
+        </audio>
+        <audio preload='auto' loop='loop' class="rotating-3d__sound-pig">
+          <source src="./sounds/pig.mp3" type="audio/mpeg">
+        </audio>
+      </span>
 
 
 
@@ -43,7 +53,51 @@
 
   </main>
 
+  <script src="./tingle.min.js"></script>
   <script>
+
+    var soundSea = document.querySelector('.rotating-3d__sound-sea');
+    var _sea = document.querySelectorAll('._sea');
+
+    var modal = new tingle.modal({
+      footer: true,
+      stickyFooter: false,
+      closeMethods: ['overlay', 'button', 'escape'],
+      closeLabel: "Close",
+      cssClass: ['custom-tingle-1', 'custom-tingle-2'],
+      onOpen: function () {
+        soundSea.play();
+      },
+      onClose: function () {
+        soundSea.pause();
+      },
+      beforeOpen: function () {
+        soundSea.play();
+      },
+      beforeClose: function () {
+        soundSea.pause();
+      },
+      beforeClose: function () {
+        // here's goes some logic
+        // e.g. save content before closing the modal
+        return true; // close the modal
+        // return false; // nothing happens
+      }
+    });
+
+
+
+    var imgs = document.querySelectorAll('.rotating-3d__item');
+    imgs.forEach(function (a, b, c) {
+      a.onclick = function (e) {
+        var imgSrc = a.childNodes[0].src;
+        modal.setContent('<img class="tingle-img" src="' + imgSrc + '">');
+        modal.open();
+      }
+    });
+
+
+
     var rotating3d = document.querySelector('.rotating-3d');
 
     var currentPositionDeg = 0;
@@ -67,7 +121,7 @@
       if (moveOrStop === 'stop') {
         // console.log('stop');
       } else if (moveOrStop === 'move') {
-        x = e.clientX / 800;
+        x = e.clientX / 500;
         // console.log('e.clientX ' + e.clientX);
         if (oldX < e.clientX) {
           // console.log('direction x -');
@@ -81,6 +135,8 @@
         oldX = e.pageX;
       }
     }
+
+
   </script>
 
 
