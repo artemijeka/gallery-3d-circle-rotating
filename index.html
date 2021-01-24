@@ -107,12 +107,18 @@
 
     rotating3d.addEventListener("mousedown", function (e) {
       rotating3d.onmousemove = function (e) {
+        // if (e.buttons & 1 === 1) { // true when the primary button is down
+        //   unFocus();
+        // }
         mouseMoveFunction(e, 'move');
       }
     });
 
     document.addEventListener("mouseup", function (e) {
       rotating3d.onmousemove = function (e) {
+        // if (e.buttons & 1 === 1) { // true when the primary button is down
+        //   unFocus();
+        // }
         mouseMoveFunction(e, 'stop');
       }
     });
@@ -122,7 +128,7 @@
       if (moveOrStop === 'stop') {
         // console.log('stop');
       } else if (moveOrStop === 'move') {
-        x = e.clientX / 500;
+        x = e.clientX / 300;
         // console.log('e.clientX ' + e.clientX);
         if (oldX < e.clientX) {
           // console.log('direction x -');
