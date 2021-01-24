@@ -21,28 +21,28 @@
 
       <!-- <h1 class="gallery-3d-rotating__title">3D кручение галереи</h1> -->
       <div class="gallery-3d-rotating">
-        <span class="gallery-3d-rotating__item _sea" style="--i:1">
+        <span class="gallery-3d-rotating__item" style="--i:1">
           <img src="./img/img-1.jpg" alt="img-1" class="gallery-3d-rotating__img">
           </span>
-        <span class="gallery-3d-rotating__item _pig" style="--i:2">
+        <span class="gallery-3d-rotating__item" style="--i:2">
           <img src="./img/img-2.jpg" alt="img-2" class="gallery-3d-rotating__img">
           </span>
-        <span class="gallery-3d-rotating__item _sea" style="--i:3">
+        <span class="gallery-3d-rotating__item" style="--i:3">
           <img src="./img/img-3.jpg" alt="img-3" class="gallery-3d-rotating__img">
           </span>
-        <span class="gallery-3d-rotating__item _sea" style="--i:4">
+        <span class="gallery-3d-rotating__item" style="--i:4">
           <img src="./img/img-4.jpg" alt="img-4" class="gallery-3d-rotating__img">
           </span>
-        <span class="gallery-3d-rotating__item _sea" style="--i:5">
+        <span class="gallery-3d-rotating__item" style="--i:5">
           <img src="./img/img-5.jpg" alt="img-5" class="gallery-3d-rotating__img">
           </span>
-        <span class="gallery-3d-rotating__item _sea" style="--i:6">
+        <span class="gallery-3d-rotating__item" style="--i:6">
           <img src="./img/img-6.jpg" alt="img-6" class="gallery-3d-rotating__img">
           </span>
-        <span class="gallery-3d-rotating__item _sea" style="--i:7">
+        <span class="gallery-3d-rotating__item" style="--i:7">
           <img src="./img/img-7.jpg" alt="img-7" class="gallery-3d-rotating__img">
           </span>
-        <span class="gallery-3d-rotating__item _sea" style="--i:8">
+        <span class="gallery-3d-rotating__item" style="--i:8">
           <img src="./img/img-8.jpg" alt="img-8" class="gallery-3d-rotating__img">
           </span>
       </div>
@@ -65,8 +65,7 @@
   <script src="./tingle.min.js"></script>
   <script>
 
-    var soundSea = document.querySelector('.rotating-3d__sound-sea');
-    var _sea = document.querySelectorAll('._sea');
+    var soundSea = document.querySelector('.gallery-3d-rotating__sound-sea');
 
     var modal = new tingle.modal({
       footer: true,
@@ -96,7 +95,7 @@
 
 
 
-    var imgs = document.querySelectorAll('.rotating-3d__item');
+    var imgs = document.querySelectorAll('.gallery-3d-rotating__item');
     imgs.forEach(function (a, b, c) {
       a.onclick = function (e) {
         var imgSrc = a.childNodes[0].src;
@@ -107,7 +106,7 @@
 
 
 
-    var rotating3d = document.querySelector('.rotating-3d');
+    var rotating3d = document.querySelector('.gallery-3d-rotating');
 
     var currentPositionDeg = 0;
     var x = 0;
@@ -115,37 +114,25 @@
 
     rotating3d.addEventListener("mousedown", function (e) {
       rotating3d.onmousemove = function (e) {
-        // if (e.buttons & 1 === 1) { // true when the primary button is down
-        //   unFocus();
-        // }
         mouseMoveFunction(e, 'move');
       }
     });
 
     document.addEventListener("mouseup", function (e) {
       rotating3d.onmousemove = function (e) {
-        // if (e.buttons & 1 === 1) { // true when the primary button is down
-        //   unFocus();
-        // }
         mouseMoveFunction(e, 'stop');
       }
     });
 
     function mouseMoveFunction(e, moveOrStop) {
-      // console.log('-----------------');
       if (moveOrStop === 'stop') {
-        // console.log('stop');
       } else if (moveOrStop === 'move') {
         x = e.clientX / 300;
-        // console.log('e.clientX ' + e.clientX);
         if (oldX < e.clientX) {
-          // console.log('direction x -');
           currentPositionDeg += x;
         } else if (oldX > e.clientX) {
-          // console.log('direction x +');
           currentPositionDeg -= x;
         }
-        // console.log('currentPositionDeg ' + parseInt(currentPositionDeg, 0));
         rotating3d.style.transform = 'perspective(1000px) rotateY(' + currentPositionDeg + 'deg)';
         oldX = e.pageX;
       }
